@@ -1,4 +1,3 @@
-"use client";
 export default function VisionMission() {
   return (
     <section id="vision" className="py-20 bg-[#091426] text-white">
@@ -7,7 +6,6 @@ export default function VisionMission() {
           <h2 className="text-3xl md:text-4xl font-bold">
             Visi & <span className="text-[#be9028]">Misi</span> Kami
           </h2>
-          <div className="w-24 h-1 bg-[#be9028] mx-auto mt-4 mb-12"></div>
         </div>
         <div className="grid md:grid-cols-2 gap-12 mt-12">
           <div className="bg-[#006016] p-8 rounded-xl">
@@ -29,10 +27,9 @@ export default function VisionMission() {
             </div>
             <h3 className="text-2xl font-bold mb-4">Visi</h3>
             <p className="text-gray-200">
-              Menjadi pusat pengembangan kompetensi terdepan yang mendukung
-              transformasi perusahaan menuju organisasi kelas dunia dengan
-              sumber daya manusia yang unggul, berintegritas, dan berdaya saing
-              tinggi.
+              menjadi perusahaan energi terkemuka dengan memberikan solusi
+              berkualitas untuk meningkatkan dan mepertahankan permintaan energi
+              dunia yang terus meningkat.
             </p>
           </div>
           <div className="bg-[#006016] p-8 rounded-xl">
@@ -53,32 +50,11 @@ export default function VisionMission() {
               </svg>
             </div>
             <h3 className="text-2xl font-bold mb-4">Misi</h3>
-            <ul className="space-y-3 text-gray-200">
-              <li className="flex items-start">
-                <span className="text-[#be9028] mr-2">•</span>
-                <span>
-                  Menyelenggarakan program pelatihan berkualitas tinggi yang
-                  relevan dengan kebutuhan bisnis
-                </span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#be9028] mr-2">•</span>
-                <span>
-                  Membangun budaya pembelajaran berkelanjutan di seluruh jenjang
-                  organisasi
-                </span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#be9028] mr-2">•</span>
-                <span>
-                  Mengembangkan sistem pengelolaan pengetahuan yang efektif
-                </span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#be9028] mr-2">•</span>
-                <span>Mendorong inovasi dalam metode dan konten pelatihan</span>
-              </li>
-            </ul>
+            <p className="space-y-3 text-gray-200">
+              untuk menyediakan produk dan layanan berkualitas yang konsisten
+              untuk memenuhi harapan pelanggan kami,dan terlibat dalam investasi
+              bisnis terkait energi untuk pertumbuhan dan ekspansi dimasa depan.
+            </p>
           </div>
         </div>
       </div>

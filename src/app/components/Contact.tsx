@@ -1,4 +1,3 @@
-"use client";
 export default function Contact() {
   return (
     <section id="contact" className="py-20 bg-gray-50">
@@ -7,7 +6,6 @@ export default function Contact() {
           <h2 className="text-3xl md:text-4xl font-bold text-[#091426]">
             Hubungi <span className="text-[#006016]">Kami</span>
           </h2>
-          <div className="w-24 h-1 bg-[#be9028] mx-auto mt-4 mb-8"></div>
           <p className="text-lg text-gray-600">
             Silakan hubungi kami untuk informasi lebih lanjut mengenai program
             pelatihan atau jika Anda memiliki pertanyaan.
@@ -39,10 +37,10 @@ export default function Contact() {
                     <div>
                       <h4 className="font-medium">Email</h4>
                       <a
-                        href="#"
+                        href="mailto:achmadi.cde@gmail.com"
                         className="text-gray-200 hover:text-white transition-colors"
                       >
-                        awaw
+                        achmadi.cde@gmail.com
                       </a>
                     </div>
                   </div>
@@ -72,12 +70,12 @@ export default function Contact() {
                     <div>
                       <h4 className="font-medium">Lokasi</h4>
                       <a
-                        href="#"
+                        href="https://maps.app.goo.gl/34vmAGx2EG6vy9dz8"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-gray-200 hover:text-white transition-colors"
                       >
-                        Lihat di Google Maps
+                        TDC CDE
                       </a>
                     </div>
                   </div>
@@ -98,13 +96,19 @@ export default function Contact() {
                         />
                       </svg>
                     </div>
-                    <div>
+                    <div className="flex flex-col">
                       <h4 className="font-medium">Telepon</h4>
                       <a
-                        href=""
+                        href="tel:+628133361064"
                         className="text-gray-200 hover:text-white transition-colors"
                       >
-                        aw
+                        082133361064
+                      </a>
+                      <a
+                        href="tel:+6285227711087"
+                        className="text-gray-200 hover:text-white transition-colors"
+                      >
+                        085227711087
                       </a>
                     </div>
                   </div>

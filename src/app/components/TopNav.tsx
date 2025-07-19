@@ -1,6 +1,6 @@
 export default function TopNav() {
   return (
-    <div className="bg-primary text-white py-2 px-4 sm:px-6 lg:px-8">
+    <div className="bg-primary text-white py-2 px-4 sm:px-6 lg:px-8 hidden md:flex">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm">
         <div className="flex flex-wrap items-center gap-4 sm:gap-6">
           <a
