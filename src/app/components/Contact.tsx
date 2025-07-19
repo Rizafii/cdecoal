@@ -97,15 +97,19 @@ export default function Contact() {
                       </svg>
                     </div>
                     <div className="flex flex-col">
-                      <h4 className="font-medium">Telepon</h4>
+                      <h4 className="font-medium">WhatsApp</h4>
                       <a
-                        href="tel:+628133361064"
+                        href="https://wa.me/628133361064"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-gray-200 hover:text-white transition-colors"
                       >
                         082133361064
                       </a>
                       <a
-                        href="tel:+6285227711087"
+                        href="https://wa.me/6285227711087"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-gray-200 hover:text-white transition-colors"
                       >
                         085227711087
