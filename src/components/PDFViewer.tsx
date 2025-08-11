@@ -184,11 +184,13 @@ export default function PDFViewer({
         <div className="flex items-center justify-between mb-4 bg-gray-900/80 backdrop-blur-sm rounded-lg p-4">
           <div className="flex items-center space-x-3">
             <Shield className="w-6 h-6 text-green-400" />
-            <div>
-              <h2 className="text-white text-xl font-semibold truncate">
+            <div className="flex flex-col">
+              <h2 className="text-white lg:text-xl max-w-sm lg:max-w-full text-sm  font-semibold">
                 {title}
               </h2>
-              <p className="text-green-400 text-sm">✓ Dokumen Terproteksi</p>
+              <p className="text-green-400 lg:text-sm text-xs">
+                ✓ Dokumen Terproteksi
+              </p>
             </div>
           </div>
           <button
