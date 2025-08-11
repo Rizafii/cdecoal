@@ -13,51 +13,122 @@ export interface TrainingUnit {
 
 export const allTrainingData: TrainingUnit[] = [
   {
-    id: "dm45",
-    title: "Tutup Drilling DM45",
+    id: "oht773e",
+    title: "TRAINING OHT 773",
     materiList: [
-      { id: "bab1", title: "Bab 1: Pengenalan Komponen", href: "#" },
-      { id: "post1", title: "Post Test Bab 1", href: "#" },
-      { id: "bab2", title: "Bab 2: Instrument Panel", href: "#" },
-      { id: "post2", title: "Post Test Bab 2", href: "#" },
-      { id: "bab3", title: "Bab 3: Maintenance", href: "#" },
-      { id: "post3", title: "Post Test Bab 3", href: "#" },
-      { id: "bab4", title: "Bab 4: Safety Operasi", href: "#" },
-      { id: "post4", title: "Post Test Bab 4", href: "#" },
-      { id: "final", title: "Final Post Test", href: "#" },
-    ],
-  },
-  { id: "dm50", title: "Buka Drilling DM50", href: "#" },
-  { id: "dmlsp", title: "Buka Drilling DML SP", href: "#" },
-  { id: "r210", title: "Buka Hyundai R210", href: "#" },
-  { id: "pc200", title: "Buka Komatsu PC 200", href: "#" },
-  { id: "longarm", title: "Buka Long Arm", href: "#" },
-  { id: "pc400", title: "Buka Komatsu PC 400", href: "#" },
-  { id: "doosan500", title: "Buka Doosan 500", href: "#" },
-  { id: "pc1250", title: "Buka Komatsu PC 1250", href: "#" },
-  { id: "cat6015", title: "Buka CAT 6015", href: "#" },
-  { id: "pc2000", title: "Buka Komatsu PC 2000", href: "#" },
-  { id: "cat6020", title: "Buka CAT 6020", href: "#" },
-  { id: "ex200", title: "Buka Hitachi EX200", href: "#" },
-  { id: "wa500", title: "Buka Komatsu WA500", href: "#" },
-  { id: "hd785", title: "Buka Komatsu HD785", href: "#" },
-  {
-    id: "safety",
-    title: "Pelatihan Safety Umum",
-    materiList: [
-      { id: "safety1", title: "Bab 1: Dasar-dasar K3", href: "#" },
-      { id: "safety2", title: "Bab 2: APD & Prosedur", href: "#" },
-      { id: "safety3", title: "Bab 3: Tanggap Darurat", href: "#" },
-      { id: "safetyfinal", title: "Final Test Safety", href: "#" },
+      {
+        id: "bab1",
+        title: "BAB I: PENGENALAN UNIT DAN KOMPONEN",
+        href: "/training/oht773/bab1oht773.pdf",
+      },
+      // { id: "post1", title: "Post Test Bab 1", href: "#" },
+      {
+        id: "bab2",
+        title: "BAB II: PENGENALAN DAN PEMAHAMAN INSTRUMENT PANE",
+        href: "/training/oht773/bab2oht773.pdf",
+      },
+      // { id: "post2", title: "Post Test Bab 2", href: "#" },
+      {
+        id: "bab3",
+        title: "BAB III: P2H DAN PERAWATAN",
+        href: "/training/oht773/bab3oht773.pdf",
+      },
+      // { id: "post3", title: "Post Test Bab 3", href: "#" },
+      {
+        id: "bab4",
+        title: "BAB IV: METHODE DAN TEHNIK OPERASI",
+        href: "/training/oht773/bab4oht773.pdf",
+      },
+      {
+        id: "ppt",
+        title: "POWER POINT",
+        href: "/training/oht773/training773ecde.pdf",
+      },
     ],
   },
   {
-    id: "env",
-    title: "Pelatihan Lingkungan",
+    id: "exa395",
+    title: "TRAINING EXCAVATOR 395",
     materiList: [
-      { id: "env1", title: "Bab 1: Pengelolaan Limbah", href: "#" },
-      { id: "env2", title: "Bab 2: Reklamasi", href: "#" },
-      { id: "envfinal", title: "Final Test Lingkungan", href: "#" },
+      {
+        id: "bab1",
+        title: "BAB I: PENGENALAN UNIT DAN KOMPONEN",
+        href: "/training/cat395/1.pdf",
+      },
+      // { id: "post1", title: "Post Test Bab 1", href: "#" },
+      {
+        id: "bab2",
+        title: "BAB II: PEMAHAMAN INSTRUMEN PANEL DAN KONTROL",
+        href: "/training/cat395/2.pdf",
+      },
+      // { id: "post2", title: "Post Test Bab 2", href: "#" },
+      {
+        id: "bab3",
+        title: "BAB III: P2H DAN PERAWATAN",
+        href: "/training/cat395/3.pdf",
+      },
+      // { id: "post3", title: "Post Test Bab 3", href: "#" },
+      {
+        id: "bab4",
+        title: "BAB IV: METHODE DAN TEHNIK OPERASI",
+        href: "/training/cat395/4.pdf",
+      },
+      {
+        id: "ppt",
+        title: "POWER POINT",
+        href: "/training/cat395/ppt.pdf",
+      },
+    ],
+  },
+  {
+    id: "exa320",
+    title: "TRAINING EXCAVATOR 320",
+    materiList: [
+      {
+        id: "ppt",
+        title: "POWER POINT",
+        href: "/training/cat320/ppt.pdf",
+      },
+    ],
+  },
+  {
+    id: "d8t",
+    title: "TRAINING DOZER D8T",
+    materiList: [
+      {
+        id: "ppt",
+        title: "POWER POINT",
+        href: "/training/d8t/ppt.pdf",
+      },
+    ],
+  },
+  {
+    id: "d6r",
+    title: "TRAINING DOZER D6R",
+    materiList: [
+      {
+        id: "bab1",
+        title: "BAB I: PENGENALAN UNIT DAN KOMPONEN",
+        href: "/training/d6r/1.pdf",
+      },
+      // { id: "post1", title: "Post Test Bab 1", href: "#" },
+      {
+        id: "bab2",
+        title: "BAB II: PENGENALAN DAN PEMAHAMAN INSTRUMENT PANEL",
+        href: "/training/d6r/2.pdf",
+      },
+      // { id: "post2", title: "Post Test Bab 2", href: "#" },
+      {
+        id: "bab3",
+        title: "BAB III: P2H DAN PERAWATAN",
+        href: "/training/d6r/3.pdf",
+      },
+      // { id: "post3", title: "Post Test Bab 3", href: "#" },
+      {
+        id: "bab4",
+        title: "BAB IV: METHODE DAN TEHNIK OPERASI",
+        href: "/training/d6r/4.pdf",
+      },
     ],
   },
 ];
