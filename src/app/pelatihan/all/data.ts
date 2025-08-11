@@ -131,4 +131,44 @@ export const allTrainingData: TrainingUnit[] = [
       },
     ],
   },
+  {
+    id: "gd120",
+    title: "TRAINING MOTOR GRADER 120 GC",
+    materiList: [
+      {
+        id: "bab1",
+        title: "BAB I: PENGENALAN UNIT DAN KOMPONEN",
+        href: "/training/gd120/1.pdf",
+      },
+      // { id: "post1", title: "Post Test Bab 1", href: "#" },
+      {
+        id: "bab2",
+        title: "BAB II: PEMAHAMAN INSTRUMEN PANEL DAN KONTROL",
+        href: "/training/gd120/2.pdf",
+      },
+      // { id: "post2", title: "Post Test Bab 2", href: "#" },
+      {
+        id: "bab3",
+        title: "BAB III: P2H DAN PERAWATAN",
+        href: "/training/gd120/3.pdf",
+      },
+      // { id: "post3", title: "Post Test Bab 3", href: "#" },
+      {
+        id: "bab4",
+        title: "BAB IV: METHODE DAN TEHNIK OPERASI",
+        href: "/training/gd120/4.pdf",
+      },
+    ],
+  },
+  {
+    id: "dtiveco",
+    title: "TRAINING DUMP TRUCK IVECO",
+    materiList: [
+      {
+        id: "ppt",
+        title: "POWER POINT",
+        href: "/training/dtiveco/ppt.pdf",
+      },
+    ],
+  },
 ];
