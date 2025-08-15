@@ -14,106 +14,75 @@ export interface KategoriSoal {
 
 export const induksiData: KategoriSoal[] = [
   {
-    id: "operator",
-    title: "Tutup Induksi Operator (Nilai Minimal 80)",
+    id: "dozer",
+    title: "Dozer 6R (Nilai Minimal 80)",
     minimalNilai: 80,
     soalList: [
       {
-        id: "ob-hauler",
-        title: "Soal OB Hauler",
-        href: "/induksi/soal/ob-hauler",
-      },
-      {
-        id: "big-digger",
-        title: "Soal Big Digger",
-        href: "/induksi/soal/big-digger",
-      },
-      {
-        id: "excavator-support",
-        title: "Soal Excavator Support",
-        href: "/induksi/soal/excavator-support",
-      },
-      {
-        id: "bulldozer",
-        title: "Soal Bulldozer",
-        href: "/induksi/soal/bulldozer",
-      },
-      { id: "wa-wd", title: "Soal WA/WD", href: "/induksi/soal/wa-wd" },
-      {
-        id: "motor-grader",
-        title: "Soal Motor Grader",
-        href: "/induksi/soal/motor-grader",
-      },
-      {
-        id: "compactor",
-        title: "Soal Compactor",
-        href: "/induksi/soal/compactor",
-      },
-      {
-        id: "drilling-machine",
-        title: "Soal Drilling Machine",
-        href: "/induksi/soal/drilling-machine",
-      },
-      { id: "dt-coal", title: "Soal DT Coal", href: "/induksi/soal/dt-coal" },
-      { id: "trailer", title: "Soal Trailer", href: "/induksi/soal/trailer" },
-      {
-        id: "fuel-lube-truck",
-        title: "Soal Fuel Lube Truck",
-        href: "/induksi/soal/fuel-lube-truck",
-      },
-      { id: "wt-dt", title: "Soal WT DT", href: "/induksi/soal/wt-dt" },
-      { id: "wt-hd", title: "Soal WT HD", href: "/induksi/soal/wt-hd" },
-      {
-        id: "forklift",
-        title: "Soal Forklift",
-        href: "/induksi/soal/forklift",
-      },
-      { id: "manitou", title: "Soal Manitou", href: "/induksi/soal/manitou" },
-      { id: "tadano", title: "Soal Tadano", href: "/induksi/soal/tadano" },
-      {
-        id: "welding-truck",
-        title: "Soal Welding Truck",
-        href: "/induksi/soal/welding-truck",
-      },
-      {
-        id: "user-produksi",
-        title: "Soal User Produksi",
-        href: "/induksi/soal/user-produksi",
-      },
-      {
-        id: "golden-rules",
-        title: "Survey Pemahaman 11 Golden Rules",
-        href: "/induksi/survey/golden-rules",
-      },
-      {
-        id: "perilaku-kerja",
-        title: "Survey Perilaku Kerja Aman",
-        href: "/induksi/survey/perilaku-kerja",
+        id: "soal-dozer-6r",
+        title: "Soal Dozer 6R",
+        href: "https://forms.gle/7L5wPNQh2anKcmAJ7",
       },
     ],
   },
   {
-    id: "pengawas",
-    title: "Buku Induksi Pengawas (Minimal Nilai 80)",
+    id: "dozer2",
+    title: "Dozer 8T (Minimal Nilai 80)",
     minimalNilai: 80,
-    soalList: [],
+    soalList: [
+      {
+        id: "soal-dozer-8t",
+        title: "Soal Dozer 8T",
+        href: "https://forms.gle/3QDGPbiHPPtRXRLY6",
+      },
+    ],
   },
   {
-    id: "mis-operasi",
-    title: "Buku Mis Operasi (Nilai Wajib 100)",
-    minimalNilai: 100,
-    soalList: [],
-  },
-  {
-    id: "trainer",
-    title: "Buku Induksi Trainer (Minimal Nilai 90)",
-    minimalNilai: 90,
-    soalList: [],
-  },
-  {
-    id: "mekanik",
-    title: "Buku Induksi Mekanik (Minimal Nilai 80)",
+    id: "dumptruck",
+    title: "Dump Truck (Minimal Nilai 80)",
     minimalNilai: 80,
-    soalList: [],
+    soalList: [
+      {
+        id: "soal-dumptruck",
+        title: "Soal Dump Truck",
+        href: "https://forms.gle/Z1rPfi4NJgjfaNm78",
+      },
+    ],
+  },
+  {
+    id: "motorgrader",
+    title: "Motor Grader (Minimal Nilai 80)",
+    minimalNilai: 80,
+    soalList: [
+      {
+        id: "soal-motor-grader",
+        title: "Soal Motor Grader",
+        href: "https://forms.gle/naeW4rwwDbn72jZe8",
+      },
+    ],
+  },
+  {
+    id: "exavator320",
+    title: "Exavator 320 (Minimal Nilai 80)",
+    minimalNilai: 80,
+    soalList: [
+      {
+        id: "soal-exavator-320",
+        title: "Soal Exavator 320",
+        href: "https://forms.gle/wHuf7PKptFPmhZpP7",
+      },
+    ],
+  },
+  {
+    id: "exavator395b",
+    title: "Exavator 395 B (Minimal Nilai 80)",
+    minimalNilai: 80,
+    soalList: [
+      {
+        id: "soal-exavator-395b",
+        title: "Soal Exavator 395 B",
+        href: "https://forms.gle/iRpYrpLq1rDuu78z9",
+      },
+    ],
   },
 ];
