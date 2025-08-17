@@ -85,4 +85,16 @@ export const induksiData: KategoriSoal[] = [
       },
     ],
   },
+  {
+    id: "oht773",
+    title: "OHT 773 (Minimal Nilai 80)",
+    minimalNilai: 80,
+    soalList: [
+      {
+        id: "soal-oht-773",
+        title: "Soal OHT 773",
+        href: "https://forms.gle/CdTsQvjXG5rHqv5m8",
+      },
+    ],
+  },
 ];

@@ -66,6 +66,8 @@ const KategoriCard = ({ kategori }: { kategori: KategoriSoal }) => {
                   <a
                     key={soal.id}
                     href={soal.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group flex items-center justify-between p-4 bg-gray-50 hover:bg-blue-50 rounded-lg cursor-pointer transition-colors duration-150 text-decoration-none"
                   >
                     <div className="flex items-center space-x-3">
