@@ -10,6 +10,7 @@ import ProgramPelatihan from "./components/ProgramPelatihan";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import TopNav from "./components/TopNav";
+import GallerySection from "@/components/GallerySection";
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
       <ProgramPelatihan />
       <About />
       <VisionMission />
+      <GallerySection />
       <Contact />
       <Footer />
     </>

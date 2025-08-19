@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Shield, Lock } from "lucide-react";
+import AdminDashboard from "@/components/admin/AdminDashboard";
 
 export default function AdminPage() {
   // State untuk autentikasi password
@@ -25,23 +26,9 @@ export default function AdminPage() {
     }
   };
 
-  // Jika sudah autentikasi, tampilkan pesan sukses
+  // Jika sudah autentikasi, tampilkan dashboard admin
   if (isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6">
-        <div className="w-full max-w-md">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Shield className="w-8 h-8 text-green-600" />
-            </div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">
-              Login Berhasil
-            </h1>
-            <p className="text-gray-600">Anda berhasil masuk ke area admin</p>
-          </div>
-        </div>
-      </div>
-    );
+    return <AdminDashboard />;
   }
 
   // Jika belum autentikasi, tampilkan form password
