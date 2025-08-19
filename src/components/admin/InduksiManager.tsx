@@ -11,7 +11,9 @@ import {
   ChevronUp,
   Award,
   ExternalLink,
+  GraduationCap,
 } from "lucide-react";
+import Swal from "sweetalert2";
 
 interface KategoriInduksi {
   id: string;
@@ -63,7 +65,12 @@ export default function InduksiManager() {
       setKategoriList(data);
     } catch (error) {
       console.error("Error fetching induksi data:", error);
-      alert("Error fetching induksi data");
+      Swal.fire({
+        title: "Error!",
+        text: "Gagal memuat data induksi",
+        icon: "error",
+        confirmButtonColor: "#dc2626",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -86,10 +93,23 @@ export default function InduksiManager() {
 
       setKategoriForm({ title: "", minimal_nilai: 80, display_order: 0 });
       fetchInduksiData();
-      alert("Kategori created successfully!");
+
+      await Swal.fire({
+        title: "Berhasil!",
+        text: "Kategori induksi berhasil dibuat!",
+        icon: "success",
+        confirmButtonColor: "#10b981",
+        timer: 2000,
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("Error creating kategori:", error);
-      alert("Error creating kategori");
+      Swal.fire({
+        title: "Error!",
+        text: "Gagal membuat kategori induksi",
+        icon: "error",
+        confirmButtonColor: "#dc2626",
+      });
     }
   };
 

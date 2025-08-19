@@ -11,7 +11,10 @@ import {
   ChevronUp,
   Upload,
   FileText,
+  FolderOpen,
+  BookOpen,
 } from "lucide-react";
+import Swal from "sweetalert2";
 
 interface TrainingUnit {
   id: string;
@@ -65,7 +68,12 @@ export default function TrainingManager() {
       setTrainingUnits(data);
     } catch (error) {
       console.error("Error fetching training data:", error);
-      alert("Error fetching training data");
+      Swal.fire({
+        title: "Error!",
+        text: "Gagal memuat data pelatihan",
+        icon: "error",
+        confirmButtonColor: "#dc2626",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -96,10 +104,23 @@ export default function TrainingManager() {
 
       setUnitForm({ title: "", href: "", display_order: 0, file: null });
       fetchTrainingData();
-      alert("Training unit created successfully!");
+
+      await Swal.fire({
+        title: "Berhasil!",
+        text: "Unit pelatihan berhasil dibuat!",
+        icon: "success",
+        confirmButtonColor: "#10b981",
+        timer: 2000,
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("Error creating training unit:", error);
-      alert("Error creating training unit");
+      Swal.fire({
+        title: "Error!",
+        text: "Gagal membuat unit pelatihan",
+        icon: "error",
+        confirmButtonColor: "#dc2626",
+      });
     }
   };
 
@@ -126,22 +147,41 @@ export default function TrainingManager() {
       setEditingUnit(null);
       setUnitForm({ title: "", href: "", display_order: 0, file: null });
       fetchTrainingData();
-      alert("Training unit updated successfully!");
+
+      await Swal.fire({
+        title: "Berhasil!",
+        text: "Unit pelatihan berhasil diperbarui!",
+        icon: "success",
+        confirmButtonColor: "#10b981",
+        timer: 2000,
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("Error updating training unit:", error);
-      alert("Error updating training unit");
+      Swal.fire({
+        title: "Error!",
+        text: "Gagal memperbarui unit pelatihan",
+        icon: "error",
+        confirmButtonColor: "#dc2626",
+      });
     }
   };
 
   // Delete training unit
   const handleDeleteUnit = async (id: string) => {
-    if (
-      !confirm(
-        "Are you sure you want to delete this training unit? This will also delete all its materials."
-      )
-    ) {
-      return;
-    }
+    const result = await Swal.fire({
+      title: "Konfirmasi Hapus",
+      text: "Apakah Anda yakin ingin menghapus unit pelatihan ini? Semua materi di dalamnya akan ikut terhapus.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#dc2626",
+      cancelButtonColor: "#6b7280",
+      confirmButtonText: "Ya, Hapus",
+      cancelButtonText: "Batal",
+      reverseButtons: true,
+    });
+
+    if (!result.isConfirmed) return;
 
     try {
       const response = await fetch(`/api/admin/training?id=${id}`, {
@@ -151,10 +191,23 @@ export default function TrainingManager() {
       if (!response.ok) throw new Error("Failed to delete training unit");
 
       fetchTrainingData();
-      alert("Training unit deleted successfully!");
+
+      await Swal.fire({
+        title: "Berhasil!",
+        text: "Unit pelatihan berhasil dihapus!",
+        icon: "success",
+        confirmButtonColor: "#10b981",
+        timer: 2000,
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("Error deleting training unit:", error);
-      alert("Error deleting training unit");
+      Swal.fire({
+        title: "Error!",
+        text: "Gagal menghapus unit pelatihan",
+        icon: "error",
+        confirmButtonColor: "#dc2626",
+      });
     }
   };
 
@@ -186,10 +239,23 @@ export default function TrainingManager() {
         file: null,
       });
       fetchTrainingData();
-      alert("Materi item created successfully!");
+
+      await Swal.fire({
+        title: "Berhasil!",
+        text: "Materi berhasil ditambahkan!",
+        icon: "success",
+        confirmButtonColor: "#10b981",
+        timer: 2000,
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("Error creating materi item:", error);
-      alert("Error creating materi item");
+      Swal.fire({
+        title: "Error!",
+        text: "Gagal menambahkan materi",
+        icon: "error",
+        confirmButtonColor: "#dc2626",
+      });
     }
   };
 
@@ -222,18 +288,41 @@ export default function TrainingManager() {
         file: null,
       });
       fetchTrainingData();
-      alert("Materi item updated successfully!");
+
+      await Swal.fire({
+        title: "Berhasil!",
+        text: "Materi berhasil diperbarui!",
+        icon: "success",
+        confirmButtonColor: "#10b981",
+        timer: 2000,
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("Error updating materi item:", error);
-      alert("Error updating materi item");
+      Swal.fire({
+        title: "Error!",
+        text: "Gagal memperbarui materi",
+        icon: "error",
+        confirmButtonColor: "#dc2626",
+      });
     }
   };
 
   // Delete materi item
   const handleDeleteMateri = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this materi item?")) {
-      return;
-    }
+    const result = await Swal.fire({
+      title: "Konfirmasi Hapus",
+      text: "Apakah Anda yakin ingin menghapus materi ini?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#dc2626",
+      cancelButtonColor: "#6b7280",
+      confirmButtonText: "Ya, Hapus",
+      cancelButtonText: "Batal",
+      reverseButtons: true,
+    });
+
+    if (!result.isConfirmed) return;
 
     try {
       const response = await fetch(`/api/admin/materi?id=${id}`, {
@@ -243,10 +332,23 @@ export default function TrainingManager() {
       if (!response.ok) throw new Error("Failed to delete materi item");
 
       fetchTrainingData();
-      alert("Materi item deleted successfully!");
+
+      await Swal.fire({
+        title: "Berhasil!",
+        text: "Materi berhasil dihapus!",
+        icon: "success",
+        confirmButtonColor: "#10b981",
+        timer: 2000,
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("Error deleting materi item:", error);
-      alert("Error deleting materi item");
+      Swal.fire({
+        title: "Error!",
+        text: "Gagal menghapus materi",
+        icon: "error",
+        confirmButtonColor: "#dc2626",
+      });
     }
   };
 
@@ -263,12 +365,12 @@ export default function TrainingManager() {
 
   if (isLoading) {
     return (
-      <div className="p-6">
+      <div className="p-8">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded mb-4"></div>
-          <div className="space-y-3">
+          <div className="h-8 bg-gray-200 rounded w-1/3 mb-6"></div>
+          <div className="space-y-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-20 bg-gray-200 rounded"></div>
+              <div key={i} className="h-24 bg-gray-200 rounded-xl"></div>
             ))}
           </div>
         </div>
@@ -277,10 +379,11 @@ export default function TrainingManager() {
   }
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-8">
+      {/* Header */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">
-          Kelola Training Data
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          Kelola Data Pelatihan
         </h2>
         <p className="text-gray-600">
           Kelola unit pelatihan dan materi pembelajaran
@@ -288,15 +391,27 @@ export default function TrainingManager() {
       </div>
 
       {/* Add New Training Unit Form */}
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">
-          {editingUnit ? "Edit Training Unit" : "Tambah Training Unit Baru"}
-        </h3>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 mb-8">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+            <Plus className="w-5 h-5 text-white" />
+          </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Judul Unit
+            <h3 className="text-lg font-bold text-gray-900">
+              {editingUnit
+                ? "Edit Unit Pelatihan"
+                : "Tambah Unit Pelatihan Baru"}
+            </h3>
+            <p className="text-sm text-gray-600">
+              Buat atau edit unit pelatihan
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-3">
+              \ Judul Unit
             </label>
             <input
               type="text"

@@ -106,6 +106,121 @@ CREATE POLICY "Allow authenticated users to manage materi_items"
     USING (auth.role() = 'authenticated');
 
 -- =======================
+-- SIMPER DATA TABLES
+-- =======================
+
+-- Buat tabel simper_categories (kategori simper)
+CREATE TABLE IF NOT EXISTS simper_categories (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    kategori VARCHAR(100) NOT NULL,
+    unit VARCHAR(255) NOT NULL,
+    minimal_nilai INTEGER DEFAULT 80,
+    display_order INTEGER DEFAULT 0,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Buat tabel simper_soal (soal dalam kategori simper)
+CREATE TABLE IF NOT EXISTS simper_soal (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    simper_category_id UUID REFERENCES simper_categories(id) ON DELETE CASCADE,
+    title VARCHAR(255) NOT NULL,
+    href TEXT NOT NULL,
+    display_order INTEGER DEFAULT 0,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Trigger untuk update updated_at pada simper_categories
+CREATE TRIGGER update_simper_categories_updated_at 
+    BEFORE UPDATE ON simper_categories 
+    FOR EACH ROW 
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Trigger untuk update updated_at pada simper_soal
+CREATE TRIGGER update_simper_soal_updated_at 
+    BEFORE UPDATE ON simper_soal 
+    FOR EACH ROW 
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- RLS untuk simper_categories
+ALTER TABLE simper_categories ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public read access on simper_categories" 
+    ON simper_categories FOR SELECT 
+    USING (true);
+
+CREATE POLICY "Allow authenticated users to manage simper_categories" 
+    ON simper_categories FOR ALL 
+    USING (auth.role() = 'authenticated');
+
+-- RLS untuk simper_soal
+ALTER TABLE simper_soal ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public read access on simper_soal" 
+    ON simper_soal FOR SELECT 
+    USING (true);
+
+CREATE POLICY "Allow authenticated users to manage simper_soal" 
+    ON simper_soal FOR ALL 
+    USING (auth.role() = 'authenticated');
+
+-- Insert data awal SIMPER
+DO $$
+DECLARE
+    cat_id UUID;
+BEGIN
+    -- OHT 773
+    INSERT INTO simper_categories (kategori, unit, minimal_nilai, display_order) 
+    VALUES ('WAJIB', 'SIMPER OFF HIGHWAY TRUCK 773', 80, 1) 
+    RETURNING id INTO cat_id;
+    
+    INSERT INTO simper_soal (simper_category_id, title, href, display_order) 
+    VALUES (cat_id, 'SIMPER OFF HIGHWAY TRUCK 773', 'https://forms.gle/4ttfUEqqP8wSv4G68', 1);
+
+    -- EXAVATOR 395B
+    INSERT INTO simper_categories (kategori, unit, minimal_nilai, display_order) 
+    VALUES ('WAJIB', 'SIMPER EXAVATOR 395B', 80, 2) 
+    RETURNING id INTO cat_id;
+    
+    INSERT INTO simper_soal (simper_category_id, title, href, display_order) 
+    VALUES (cat_id, 'SIMPER EXAVATOR 395B', 'https://forms.gle/XL9VSctkSnmQRBMQ8', 1);
+
+    -- DUMP TRUCK
+    INSERT INTO simper_categories (kategori, unit, minimal_nilai, display_order) 
+    VALUES ('WAJIB', 'SIMPER DUMP TRUCK', 80, 3) 
+    RETURNING id INTO cat_id;
+    
+    INSERT INTO simper_soal (simper_category_id, title, href, display_order) 
+    VALUES (cat_id, 'SIMPER DUMP TRUCK', 'https://forms.gle/KP74zdG35eJgoAG66', 1);
+
+    -- MOTOR GRADER
+    INSERT INTO simper_categories (kategori, unit, minimal_nilai, display_order) 
+    VALUES ('WAJIB', 'SIMPER MOTOR GRADER', 80, 4) 
+    RETURNING id INTO cat_id;
+    
+    INSERT INTO simper_soal (simper_category_id, title, href, display_order) 
+    VALUES (cat_id, 'SIMPER MOTOR GRADER', 'https://forms.gle/tDPbNoE4EYoWDcHQA', 1);
+
+    -- DOZER 6R
+    INSERT INTO simper_categories (kategori, unit, minimal_nilai, display_order) 
+    VALUES ('WAJIB', 'SIMPER DOZER 6R', 80, 5) 
+    RETURNING id INTO cat_id;
+    
+    INSERT INTO simper_soal (simper_category_id, title, href, display_order) 
+    VALUES (cat_id, 'SIMPER DOZER 6R', 'https://forms.gle/aVMrkgKwiyGkxFQa8', 1);
+
+    -- EXAVATOR 320
+    INSERT INTO simper_categories (kategori, unit, minimal_nilai, display_order) 
+    VALUES ('WAJIB', 'SIMPER EXAVATOR 320', 80, 6) 
+    RETURNING id INTO cat_id;
+    
+    INSERT INTO simper_soal (simper_category_id, title, href, display_order) 
+    VALUES (cat_id, 'SIMPER EXAVATOR 320', 'https://forms.gle/i4s8gRDrM7Fd6g1U6', 1);
+
+END $$;
+
+-- =======================
 -- INDUKSI DATA TABLES
 -- =======================
 
