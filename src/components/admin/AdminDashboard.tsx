@@ -1,14 +1,27 @@
 "use client";
 
 import React, { useState } from "react";
-import { Shield, Lock, Image, BarChart3, Users, Settings } from "lucide-react";
+import {
+  Shield,
+  Lock,
+  Image,
+  BarChart3,
+  Users,
+  Settings,
+  BookOpen,
+  GraduationCap,
+} from "lucide-react";
 import GalleryManager from "@/components/admin/GalleryManager";
+import TrainingManager from "@/components/admin/TrainingManager";
+import InduksiManager from "@/components/admin/InduksiManager";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("gallery");
 
   const menuItems = [
     { id: "gallery", label: "Gallery", icon: Image },
+    { id: "training", label: "Training Data", icon: BookOpen },
+    { id: "induksi", label: "Induksi Data", icon: GraduationCap },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
     { id: "users", label: "Users", icon: Users },
     { id: "settings", label: "Settings", icon: Settings },
@@ -18,6 +31,10 @@ export default function AdminDashboard() {
     switch (activeTab) {
       case "gallery":
         return <GalleryManager />;
+      case "training":
+        return <TrainingManager />;
+      case "induksi":
+        return <InduksiManager />;
       case "analytics":
         return (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
