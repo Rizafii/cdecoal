@@ -20,12 +20,19 @@ import GalleryManager from "@/components/admin/GalleryManager";
 import TrainingManager from "@/components/admin/TrainingManager";
 import InduksiManager from "@/components/admin/InduksiManager";
 import SimperManager from "@/components/admin/SimperManager";
+import ImageManager from "@/components/admin/ImageManager";
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState("gallery");
+  const [activeTab, setActiveTab] = useState("images");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const menuItems = [
+    {
+      id: "images",
+      label: "Kelola Gambar",
+      icon: Settings,
+      description: "Kelola gambar Hero & About",
+    },
     {
       id: "gallery",
       label: "Galeri",
@@ -87,6 +94,33 @@ export default function AdminDashboard() {
     switch (activeTab) {
       case "gallery":
         return <GalleryManager />;
+      case "images":
+        return (
+          <div className="space-y-6">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                Kelola Gambar Website
+              </h1>
+              <p className="text-gray-600 mb-6">
+                Kelola gambar Hero section dan About section pada halaman utama
+                website.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ImageManager
+                type="hero"
+                title="Gambar Hero Section"
+                description="Gambar utama yang ditampilkan di bagian atas halaman"
+              />
+              <ImageManager
+                type="about"
+                title="Gambar About Section"
+                description="Gambar yang ditampilkan di bagian tentang kami"
+              />
+            </div>
+          </div>
+        );
       case "training":
         return <TrainingManager />;
       case "induksi":
@@ -94,7 +128,32 @@ export default function AdminDashboard() {
       case "simper":
         return <SimperManager />;
       default:
-        return <GalleryManager />;
+        return (
+          <div className="space-y-6">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                Kelola Gambar Website
+              </h1>
+              <p className="text-gray-600 mb-6">
+                Kelola gambar Hero section dan About section pada halaman utama
+                website.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ImageManager
+                type="hero"
+                title="Gambar Hero Section"
+                description="Gambar utama yang ditampilkan di bagian atas halaman"
+              />
+              <ImageManager
+                type="about"
+                title="Gambar About Section"
+                description="Gambar yang ditampilkan di bagian tentang kami"
+              />
+            </div>
+          </div>
+        );
     }
   };
 
@@ -215,7 +274,7 @@ export default function AdminDashboard() {
 
           {/* Main Content */}
           <main className="flex-1">
-            <div className="bg-white rounded-xl shadow-lg border border-gray-200 min-h-[400px] lg:min-h-[600px]">
+            <div className="bg-white text-black rounded-xl shadow-lg border border-gray-200 min-h-[400px] lg:min-h-[600px]">
               {renderContent()}
             </div>
           </main>

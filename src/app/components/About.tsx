@@ -1,4 +1,11 @@
+"use client";
+
+import { useSiteImage } from "@/hooks/useSiteImage";
+import { ImageSkeleton } from "@/components/ui/Skeleton";
+
 export default function About() {
+  const { imageUrl, isLoading } = useSiteImage("about");
+
   return (
     <section
       id="about"
@@ -8,11 +15,15 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div className=" border-2 border-dashed rounded-xl w-full h-96">
-              <img
-                src="/about.jpg"
-                alt="About Us"
-                className="w-full h-full object-cover rounded-lg"
-              />
+              {!isLoading ? (
+                <img
+                  src={imageUrl}
+                  alt="About Us"
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              ) : (
+                <ImageSkeleton className="w-full h-full rounded-lg" />
+              )}
             </div>
           </div>
           <div>
