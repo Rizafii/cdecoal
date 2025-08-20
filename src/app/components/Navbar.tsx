@@ -16,7 +16,7 @@ export default function Navbar() {
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100 px-4 sm:px-6 lg:px-8 py-3">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center space-x-2 h-12">
+          <a href="/" className="flex items-center space-x-2 h-12">
             <img
               src="/cde.png"
               className="w-full h-full object-cover"
@@ -27,43 +27,43 @@ export default function Navbar() {
               className="w-full h-full object-cover"
               alt="Logo"
             />
-          </div>
+          </a>
 
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center space-x-8">
             <a
-              href="#about"
-              className="text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider"
+              href="/#about"
+              className="relative text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Tentang Kami
             </a>
             <a
-              href="#vision"
-              className="text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider"
+              href="/#vision"
+              className="relative text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Visi & Misi
             </a>
             <a
-              href="#training"
-              className="text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider"
+              href="/#training"
+              className="relative text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Pelatihan
             </a>
             <a
-              href="#contact"
-              className="text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider"
+              href="/#contact"
+              className="relative text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Kontak
             </a>
             <a
-              href="#contact"
-              className="text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider"
+              href="/#contact"
+              className="relative text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Galeri
             </a>
             <a
-              href="#contact"
-              className="text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider"
+              href="/#contact"
+              className="relative text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Rekrutmen
             </a>
@@ -191,30 +191,30 @@ export default function Navbar() {
           {/* Navigation Links */}
           <div className="space-y-4 mb-6">
             <a
-              href="#about"
+              href="/#about"
               onClick={closeMobileMenu}
-              className="block text-gray-800 hover:text-primary transition-colors duration-150 text-lg font-medium py-2"
+              className="relative block text-gray-800 hover:text-primary transition-colors duration-150 text-lg font-medium py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Tentang Kami
             </a>
             <a
-              href="#vision"
+              href="/#vision"
               onClick={closeMobileMenu}
-              className="block text-gray-800 hover:text-primary transition-colors duration-150 text-lg font-medium py-2"
+              className="relative block text-gray-800 hover:text-primary transition-colors duration-150 text-lg font-medium py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Visi & Misi
             </a>
             <a
-              href="#training"
+              href="/#training"
               onClick={closeMobileMenu}
-              className="block text-gray-800 hover:text-primary transition-colors duration-150 text-lg font-medium py-2"
+              className="relative block text-gray-800 hover:text-primary transition-colors duration-150 text-lg font-medium py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Pelatihan
             </a>
             <a
-              href="#contact"
+              href="/#contact"
               onClick={closeMobileMenu}
-              className="block text-gray-800 hover:text-primary transition-colors duration-150 text-lg font-medium py-2"
+              className="relative block text-gray-800 hover:text-primary transition-colors duration-150 text-lg font-medium py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Kontak
             </a>

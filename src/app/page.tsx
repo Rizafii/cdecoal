@@ -21,7 +21,7 @@ export default function Home() {
           name="description"
           content="Departemen Training perusahaan menyediakan berbagai modul pelatihan untuk pengembangan kompetensi karyawan"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logogab.png" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
       </Head>
       <TopNav />
