@@ -274,7 +274,7 @@ export default function AdminDashboard() {
 
           {/* Main Content */}
           <main className="flex-1">
-            <div className="bg-white text-black rounded-xl shadow-lg border border-gray-200 min-h-[400px] lg:min-h-[600px]">
+            <div className="bg-white text-black placeholder:text-black/80 rounded-xl shadow-lg border border-gray-200 min-h-[400px] lg:min-h-[600px]">
               {renderContent()}
             </div>
           </main>
