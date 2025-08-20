@@ -256,12 +256,12 @@ export default function SimperManager() {
 
   if (isLoading) {
     return (
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded mb-4"></div>
+          <div className="h-6 sm:h-8 bg-gray-200 rounded mb-4"></div>
           <div className="space-y-3">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-20 bg-gray-200 rounded"></div>
+              <div key={i} className="h-16 sm:h-20 bg-gray-200 rounded"></div>
             ))}
           </div>
         </div>
@@ -270,23 +270,25 @@ export default function SimperManager() {
   }
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">
+    <div className="p-4 sm:p-6 max-w-6xl mx-auto">
+      <div className="mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
           Kelola Data SIMPER
         </h2>
-        <p className="text-gray-600">Kelola kategori dan soal tes SIMPER</p>
+        <p className="text-gray-600 text-sm sm:text-base">
+          Kelola kategori dan soal tes SIMPER
+        </p>
       </div>
 
       {/* Add New Category Form */}
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">
+      <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-6">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-4">
           {editingCategory
             ? "Edit Kategori SIMPER"
             : "Tambah Kategori SIMPER Baru"}
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Kategori

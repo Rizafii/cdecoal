@@ -12,6 +12,8 @@ import {
   GraduationCap,
   Truck,
   LogOut,
+  Menu,
+  X,
 } from "lucide-react";
 import Swal from "sweetalert2";
 import GalleryManager from "@/components/admin/GalleryManager";
@@ -21,6 +23,7 @@ import SimperManager from "@/components/admin/SimperManager";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("gallery");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const menuItems = [
     {
@@ -75,6 +78,11 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+    setIsMobileMenuOpen(false); // Close mobile menu when tab changes
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case "gallery":
@@ -93,14 +101,26 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Header */}
-      <header className="bg-white shadow-lg border-b border-gray-200">
+      <header className="bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden mr-3 p-2 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </button>
+
               <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg mr-3">
                 <Shield className="w-6 h-6 text-white" />
               </div>
-              <div>
+              <div className="hidden sm:block">
                 <h1 className="text-xl font-bold text-gray-900">
                   Admin Dashboard
                 </h1>
@@ -108,9 +128,12 @@ export default function AdminDashboard() {
                   Kelola konten website CDE Coal
                 </p>
               </div>
+              <div className="sm:hidden">
+                <h1 className="text-lg font-bold text-gray-900">Admin</h1>
+              </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <div className="hidden sm:flex items-center space-x-2">
                 <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-green-500 rounded-full flex items-center justify-center">
                   <span className="text-white text-sm font-semibold">A</span>
                 </div>
@@ -120,20 +143,38 @@ export default function AdminDashboard() {
               </div>
               <button
                 onClick={handleLogout}
-                className="flex items-center space-x-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 px-3 py-2 rounded-lg transition-all duration-200"
+                className="flex items-center space-x-1 sm:space-x-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 px-2 sm:px-3 py-2 rounded-lg transition-all duration-200"
               >
                 <LogOut className="w-4 h-4" />
-                <span>Logout</span>
+                <span className="hidden sm:inline">Logout</span>
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-8">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-8">
+          {/* Mobile Navigation Overlay */}
+          {isMobileMenuOpen && (
+            <div
+              className="lg:hidden fixed inset-0 z-40 bg-black bg-opacity-50"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+          )}
+
           {/* Sidebar Navigation */}
-          <nav className="w-72 bg-white rounded-xl shadow-lg border border-gray-200 p-6 h-fit">
+          <nav
+            className={`
+            w-full lg:w-72 bg-white rounded-xl shadow-lg border border-gray-200 p-4 lg:p-6 h-fit
+            lg:relative lg:translate-x-0 lg:opacity-100
+            ${
+              isMobileMenuOpen
+                ? "fixed top-20 left-4 right-4 z-50 translate-x-0 opacity-100"
+                : "hidden lg:block"
+            }
+          `}
+          >
             <h2 className="text-lg font-semibold text-gray-900 mb-4">
               Menu Navigasi
             </h2>
@@ -143,8 +184,8 @@ export default function AdminDashboard() {
                 return (
                   <li key={item.id}>
                     <button
-                      onClick={() => setActiveTab(item.id)}
-                      className={`w-full flex items-start gap-3 px-4 py-3 rounded-xl text-left transition-all duration-200 ${
+                      onClick={() => handleTabChange(item.id)}
+                      className={`w-full flex items-start gap-3 px-3 lg:px-4 py-3 rounded-xl text-left transition-all duration-200 ${
                         activeTab === item.id
                           ? "bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 border-2 border-blue-200 shadow-md"
                           : "text-gray-700 hover:bg-gray-50 hover:shadow-sm border-2 border-transparent"
@@ -158,7 +199,9 @@ export default function AdminDashboard() {
                         }`}
                       />
                       <div>
-                        <div className="font-medium">{item.label}</div>
+                        <div className="font-medium text-sm lg:text-base">
+                          {item.label}
+                        </div>
                         <div className="text-xs text-gray-500 mt-0.5">
                           {item.description}
                         </div>
@@ -172,7 +215,7 @@ export default function AdminDashboard() {
 
           {/* Main Content */}
           <main className="flex-1">
-            <div className="bg-white rounded-xl shadow-lg border border-gray-200 min-h-[600px]">
+            <div className="bg-white rounded-xl shadow-lg border border-gray-200 min-h-[400px] lg:min-h-[600px]">
               {renderContent()}
             </div>
           </main>

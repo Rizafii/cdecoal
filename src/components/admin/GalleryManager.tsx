@@ -253,29 +253,33 @@ export default function GalleryManager() {
   }
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       {/* Header */}
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 sm:mb-8 gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Kelola Galeri</h2>
-          <p className="text-gray-600 mt-1">Kelola foto-foto galeri website</p>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+            Kelola Galeri
+          </h2>
+          <p className="text-gray-600 mt-1 text-sm sm:text-base">
+            Kelola foto-foto galeri website
+          </p>
         </div>
         <button
           onClick={() => setShowAddForm(true)}
-          className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl"
+          className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl text-sm sm:text-base"
         >
-          <Plus className="w-5 h-5" />
-          Tambah Galeri
+          <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
+          <span className="sm:inline">Tambah Galeri</span>
         </button>
       </div>
 
       {/* Add Form Modal */}
       {showAddForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-8 shadow-2xl">
-            <div className="flex justify-between items-center mb-6">
+        <div className="fixed inset-0 bg-black/10 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl">
+            <div className="flex justify-between items-start mb-6">
               <div>
-                <h3 className="text-xl font-bold text-gray-900">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900">
                   Tambah Galeri Baru
                 </h3>
                 <p className="text-gray-600 text-sm mt-1">
@@ -288,7 +292,7 @@ export default function GalleryManager() {
                   setPreviewUrl(null);
                   setFormData({ title: "", image: null });
                 }}
-                className="text-gray-400 hover:text-gray-600 hover:bg-gray-100 p-2 rounded-lg transition-colors"
+                className="text-gray-400 hover:text-gray-600 hover:bg-gray-100 p-2 rounded-lg transition-colors flex-shrink-0"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -400,7 +404,7 @@ export default function GalleryManager() {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {galleries.map((gallery) => (
             <div
               key={gallery.id}
@@ -410,23 +414,23 @@ export default function GalleryManager() {
                 <img
                   src={gallery.image_url}
                   alt={gallery.title}
-                  className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 transition-all duration-300 flex items-center justify-center">
                   <button
                     onClick={() => window.open(gallery.image_url, "_blank")}
                     className="opacity-0 group-hover:opacity-100 bg-white text-gray-700 p-2 rounded-full shadow-lg hover:bg-gray-50 transition-all duration-200"
                   >
-                    <Eye className="w-5 h-5" />
+                    <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
+              <div className="p-4 sm:p-6">
+                <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 text-sm sm:text-base">
                   {gallery.title}
                 </h3>
                 <div className="flex justify-between items-center">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-xs sm:text-sm text-gray-500">
                     {new Date(gallery.created_at || "").toLocaleDateString(
                       "id-ID",
                       {
@@ -438,7 +442,7 @@ export default function GalleryManager() {
                   </p>
                   <button
                     onClick={() => handleDeleteGallery(gallery.id!)}
-                    className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition-all duration-200"
+                    className="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 sm:p-2 rounded-lg transition-all duration-200"
                     title="Hapus galeri"
                   >
                     <Trash2 className="w-4 h-4" />

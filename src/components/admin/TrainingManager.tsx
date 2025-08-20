@@ -365,12 +365,15 @@ export default function TrainingManager() {
 
   if (isLoading) {
     return (
-      <div className="p-8">
+      <div className="p-4 sm:p-6 lg:p-8">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-1/3 mb-6"></div>
+          <div className="h-6 sm:h-8 bg-gray-200 rounded w-1/2 sm:w-1/3 mb-4 sm:mb-6"></div>
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-24 bg-gray-200 rounded-xl"></div>
+              <div
+                key={i}
+                className="h-20 sm:h-24 bg-gray-200 rounded-xl"
+              ></div>
             ))}
           </div>
         </div>
@@ -379,39 +382,39 @@ export default function TrainingManager() {
   }
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       {/* Header */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+      <div className="mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
           Kelola Data Pelatihan
         </h2>
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-sm sm:text-base">
           Kelola unit pelatihan dan materi pembelajaran
         </p>
       </div>
 
       {/* Add New Training Unit Form */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 mb-8">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-            <Plus className="w-5 h-5 text-white" />
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8">
+        <div className="flex items-center gap-3 mb-4 sm:mb-6">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+            <Plus className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-gray-900">
+            <h3 className="text-base sm:text-lg font-bold text-gray-900">
               {editingUnit
                 ? "Edit Unit Pelatihan"
                 : "Tambah Unit Pelatihan Baru"}
             </h3>
-            <p className="text-sm text-gray-600">
+            <p className="text-xs sm:text-sm text-gray-600">
               Buat atau edit unit pelatihan
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-3">
-              \ Judul Unit
+            <label className="block text-sm font-semibold text-gray-700 mb-2 sm:mb-3">
+              Judul Unit
             </label>
             <input
               type="text"
@@ -419,7 +422,7 @@ export default function TrainingManager() {
               onChange={(e) =>
                 setUnitForm({ ...unitForm, title: e.target.value })
               }
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full p-2.5 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
               placeholder="Masukkan judul unit pelatihan"
             />
           </div>
@@ -437,21 +440,22 @@ export default function TrainingManager() {
                   display_order: parseInt(e.target.value) || 0,
                 })
               }
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full p-2.5 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
               placeholder="0"
             />
           </div>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           {editingUnit ? (
             <>
               <button
                 onClick={() => handleUpdateUnit(editingUnit)}
-                className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                className="flex items-center gap-2 bg-green-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm sm:text-base"
               >
                 <Save className="w-4 h-4" />
-                Update Unit
+                <span className="hidden sm:inline">Update Unit</span>
+                <span className="sm:hidden">Update</span>
               </button>
               <button
                 onClick={() => {
@@ -463,7 +467,7 @@ export default function TrainingManager() {
                     file: null,
                   });
                 }}
-                className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+                className="flex items-center gap-2 bg-gray-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors text-sm sm:text-base"
               >
                 <X className="w-4 h-4" />
                 Batal
@@ -472,10 +476,11 @@ export default function TrainingManager() {
           ) : (
             <button
               onClick={handleCreateUnit}
-              className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              className="flex items-center gap-2 bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base w-full sm:w-auto justify-center"
             >
               <Plus className="w-4 h-4" />
-              Tambah Unit
+              <span className="hidden sm:inline">Tambah Unit</span>
+              <span className="sm:hidden">Tambah</span>
             </button>
           )}
         </div>
@@ -488,15 +493,15 @@ export default function TrainingManager() {
             key={unit.id}
             className="bg-white rounded-lg shadow-md overflow-hidden"
           >
-            <div className="p-4 border-b border-gray-200">
+            <div className="p-3 sm:p-4 border-b border-gray-200">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
                   <button
                     onClick={() => toggleExpanded(unit.id)}
-                    className="text-gray-500 hover:text-gray-700"
+                    className="text-gray-500 hover:text-gray-700 flex-shrink-0"
                   >
                     {expandedUnits.has(unit.id) ? (
-                      <ChevronUp className="w-5 h-5" />
+                      <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5" />
                     ) : (
                       <ChevronDown className="w-5 h-5" />
                     )}

@@ -55,6 +55,18 @@ export default function Navbar() {
             >
               Kontak
             </a>
+            <a
+              href="#contact"
+              className="text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider"
+            >
+              Galeri
+            </a>
+            <a
+              href="#contact"
+              className="text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider"
+            >
+              Rekrutmen
+            </a>
           </div>
 
           {/* Social Media & Mobile Menu */}

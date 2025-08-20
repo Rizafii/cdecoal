@@ -14,7 +14,7 @@ import GallerySection from "@/components/GallerySection";
 
 export default function Home() {
   return (
-    <>
+    <div className="bg-white">
       <Head>
         <title>Departemen Training - Pengembangan Sumber Daya Manusia</title>
         <meta
@@ -33,6 +33,6 @@ export default function Home() {
       <GallerySection />
       <Contact />
       <Footer />
-    </>
+    </div>
   );
 }
