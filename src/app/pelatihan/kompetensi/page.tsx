@@ -137,7 +137,7 @@ export default function KompetensiPage() {
                 <h3 className="font-medium text-green-900 mb-1">Informasi</h3>
                 <p className="text-green-700 text-sm">
                   Latihan soal ini bertujuan untuk meningkatkan kompetensi Anda.
-                  Untuk pertanyaan lebih lanjut, hubungi tim HR.
+                  Untuk pertanyaan lebih lanjut, hubungi tim HCGS.
                 </p>
               </div>
             </div>

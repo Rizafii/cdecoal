@@ -145,7 +145,7 @@ export default function SimperPage() {
                 </h3>
                 <p className="text-green-700 text-sm">
                   Pastikan Anda memilih unit SIMPER yang sesuai. Untuk
-                  pertanyaan lebih lanjut, hubungi tim HR.
+                  pertanyaan lebih lanjut, hubungi tim HCGS.
                 </p>
               </div>
             </div>

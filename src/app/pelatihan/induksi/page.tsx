@@ -86,7 +86,7 @@ export default function InduksiPage() {
                 </h3>
                 <p className="text-blue-700 text-sm">
                   Pastikan Anda menyelesaikan semua materi induksi sesuai dengan
-                  posisi Anda. Untuk pertanyaan lebih lanjut, hubungi tim HR.
+                  posisi Anda. Untuk pertanyaan lebih lanjut, hubungi tim HCGS.
                 </p>
               </div>
             </div>
