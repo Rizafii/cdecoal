@@ -32,6 +32,12 @@ export default function Navbar() {
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center space-x-8">
             <a
+              href="/#gallery"
+              className="relative text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              Galeri
+            </a>
+            <a
               href="/#about"
               className="relative text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
@@ -56,13 +62,7 @@ export default function Navbar() {
               Kontak
             </a>
             <a
-              href="/#contact"
-              className="relative text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
-            >
-              Galeri
-            </a>
-            <a
-              href="/#contact"
+              href="/recruitment"
               className="relative text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Rekrutmen
@@ -217,6 +217,13 @@ export default function Navbar() {
               className="relative block text-gray-800 hover:text-primary transition-colors duration-150 text-lg font-medium py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Kontak
+            </a>
+            <a
+              href="/recruitment"
+              onClick={closeMobileMenu}
+              className="relative block text-gray-800 hover:text-primary transition-colors duration-150 text-lg font-medium py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              Rekrutmen
             </a>
           </div>
 

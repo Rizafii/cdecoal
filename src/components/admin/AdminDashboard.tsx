@@ -20,6 +20,7 @@ import GalleryManager from "@/components/admin/GalleryManager";
 import TrainingManager from "@/components/admin/TrainingManager";
 import InduksiManager from "@/components/admin/InduksiManager";
 import SimperManager from "@/components/admin/SimperManager";
+import RecruitmentManager from "@/components/admin/RecruitmentManager";
 import ImageManager from "@/components/admin/ImageManager";
 
 export default function AdminDashboard() {
@@ -50,6 +51,12 @@ export default function AdminDashboard() {
       label: "Data Induksi",
       icon: GraduationCap,
       description: "Kelola data induksi",
+    },
+    {
+      id: "recruitment",
+      label: "Data Recruitment",
+      icon: Users,
+      description: "Kelola data recruitment",
     },
     {
       id: "simper",
@@ -125,6 +132,8 @@ export default function AdminDashboard() {
         return <TrainingManager />;
       case "induksi":
         return <InduksiManager />;
+      case "recruitment":
+        return <RecruitmentManager />;
       case "simper":
         return <SimperManager />;
       default:
