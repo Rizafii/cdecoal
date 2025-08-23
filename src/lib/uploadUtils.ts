@@ -1,4 +1,4 @@
-import { supabase } from "./supabase";
+import { supabase, supabaseAdmin } from "./supabase";
 
 export interface UploadResult {
   imageUrl: string;
@@ -47,8 +47,8 @@ export async function uploadFileToSupabase(
       `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
     const filePath = `${folder}/${finalFileName}`;
 
-    // Upload to Supabase Storage using regular client (not admin client)
-    const { error: uploadError } = await supabase.storage
+    // Upload to Supabase Storage using admin client to bypass RLS
+    const { error: uploadError } = await supabaseAdmin.storage
       .from("images")
       .upload(filePath, file, {
         contentType: file.type,
@@ -59,8 +59,8 @@ export async function uploadFileToSupabase(
       throw new Error(`Gagal upload file: ${uploadError.message}`);
     }
 
-    // Get public URL
-    const { data: urlData } = supabase.storage
+    // Get public URL using admin client
+    const { data: urlData } = supabaseAdmin.storage
       .from("images")
       .getPublicUrl(filePath);
 
@@ -84,7 +84,9 @@ export async function deleteFileFromSupabase(imagePath: string): Promise<void> {
       throw new Error("Unauthorized access");
     }
 
-    const { error } = await supabase.storage.from("images").remove([imagePath]);
+    const { error } = await supabaseAdmin.storage
+      .from("images")
+      .remove([imagePath]);
 
     if (error) {
       console.error("Delete error:", error);
@@ -121,8 +123,8 @@ export async function uploadSiteImage(
       throw new Error("Ukuran file terlalu besar. Maksimal 10MB");
     }
 
-    // Check for existing image to delete later
-    const { data: existingImage } = await supabase
+    // Check for existing image to delete later using admin client
+    const { data: existingImage } = await supabaseAdmin
       .from("site_images")
       .select("image_path")
       .eq("type", type)
@@ -139,8 +141,8 @@ export async function uploadSiteImage(
       fileName
     );
 
-    // Update database
-    const { error: dbError } = await supabase.from("site_images").upsert(
+    // Update database using admin client to bypass RLS
+    const { error: dbError } = await supabaseAdmin.from("site_images").upsert(
       {
         type,
         image_url: uploadResult.imageUrl,
@@ -204,8 +206,8 @@ export async function uploadGalleryImage(
     // Upload image
     const uploadResult = await uploadFileToSupabase(file, "galleries");
 
-    // Save to database
-    const { data, error: dbError } = await supabase
+    // Save to database using admin client to bypass RLS
+    const { data, error: dbError } = await supabaseAdmin
       .from("galleries")
       .insert({
         title,

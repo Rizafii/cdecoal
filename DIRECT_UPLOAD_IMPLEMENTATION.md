@@ -69,15 +69,16 @@ const result = await uploadSiteImage(selectedFile, type);
 1. **No Size Limits**: Bypass Vercel API route limits
 2. **Better Performance**: Direct upload to Supabase, no intermediate API
 3. **Cleaner Code**: Consolidated upload logic in utility functions
-4. **Better Security**: No service role key exposed to client
+4. **RLS Bypass**: Uses service role key to bypass Row Level Security policies
 5. **Error Handling**: Better error messages and rollback capability
 
 ## Security Considerations
 
-- Menggunakan Supabase client biasa (anon key) untuk uploads
-- RLS (Row Level Security) policies harus dikonfigurasi di Supabase
-- Storage bucket policies harus memungkinkan authenticated uploads
-- Database operations menggunakan client-side calls dengan proper authentication
+- Menggunakan Supabase admin client (dengan service role key) untuk uploads dan database operations
+- Service role key bypass RLS policies untuk operasi admin
+- Admin authentication tetap diperlukan melalui localStorage check
+- Storage bucket dan database operations menggunakan elevated privileges
+- Upload file dan database operations dilakukan dengan service role untuk menghindari RLS restrictions
 
 ## Required Supabase Configuration
 
@@ -85,7 +86,13 @@ const result = await uploadSiteImage(selectedFile, type);
 
 Pastikan bucket `images` sudah dibuat di Supabase Storage.
 
-### Storage Bucket Policies
+### Important Note about RLS
+
+Karena menggunakan service role key, RLS policies **TIDAK DIPERLUKAN** untuk operasi upload ini. Service role key memiliki akses penuh dan bypass semua RLS policies.
+
+### Optional: Storage Bucket Policies (Jika ingin menggunakan RLS)
+
+Jika Anda ingin mengaktifkan RLS untuk keamanan tambahan:
 
 ```sql
 -- Enable RLS on storage.objects
