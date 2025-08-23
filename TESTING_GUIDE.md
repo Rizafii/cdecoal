@@ -3,6 +3,7 @@
 ## Test Cases for Image Upload
 
 ### 1. Hero Image Upload (Large Files)
+
 - **Tujuan**: Test upload gambar hero berukuran besar (>6MB)
 - **Steps**:
   1. Login ke admin panel
@@ -12,6 +13,7 @@
   5. Check gambar muncul di halaman utama
 
 ### 2. About Image Upload (Large Files)
+
 - **Tujuan**: Test upload gambar about berukuran besar (>6MB)
 - **Steps**:
   1. Login ke admin panel
@@ -21,6 +23,7 @@
   5. Check gambar muncul di halaman about
 
 ### 3. Gallery Image Upload
+
 - **Tujuan**: Test upload gambar galeri
 - **Steps**:
   1. Login ke admin panel
@@ -30,6 +33,7 @@
   5. Verify gambar muncul di galeri
 
 ### 4. Large Gallery Image Upload
+
 - **Tujuan**: Test upload gambar galeri berukuran besar
 - **Steps**:
   1. Login ke admin panel
@@ -38,6 +42,7 @@
   4. Verify muncul error message "Ukuran file harus kurang dari 5MB"
 
 ### 5. Gallery Image Delete
+
 - **Tujuan**: Test hapus gambar galeri
 - **Steps**:
   1. Login ke admin panel
@@ -48,11 +53,13 @@
 ## Expected Results
 
 ### Before Implementation (Old Behavior)
+
 - ❌ Upload gambar 6MB gagal dengan error 413 Content Too Large
 - ❌ Request URL: https://cdecoal.vercel.app/api/admin/images
 - ❌ Status Code: 413
 
 ### After Implementation (New Behavior)
+
 - ✅ Upload gambar 6-10MB berhasil tanpa error
 - ✅ File langsung upload ke Supabase Storage
 - ✅ Database ter-update dengan URL gambar baru
@@ -62,20 +69,24 @@
 ## Error Scenarios to Test
 
 ### 1. Invalid File Types
+
 - Upload file non-image (PDF, DOCX, etc.)
 - Expected: Error "File harus berupa gambar"
 
 ### 2. File Size Limits
+
 - Upload gambar >10MB untuk site images
 - Expected: Error "Ukuran file terlalu besar. Maksimal 10MB"
 - Upload gambar >5MB untuk gallery
 - Expected: Error "Ukuran file harus kurang dari 5MB"
 
 ### 3. Network Issues
+
 - Test dengan koneksi internet lambat
 - Expected: Upload progress indicator, proper error handling
 
 ### 4. Authentication Issues
+
 - Test tanpa admin authentication
 - Expected: Error "Unauthorized access"
 
@@ -95,11 +106,13 @@
 ## Performance Comparison
 
 ### Before (API Route Upload)
+
 - Request limit: ~4.5MB (Vercel limit)
 - Workflow: Client → API Route → Supabase Storage
 - Potential failures: API route timeout, size limits
 
 ### After (Direct Upload)
+
 - Request limit: 50MB (Supabase default)
 - Workflow: Client → Supabase Storage (direct)
 - Benefits: Faster uploads, no intermediate API, better reliability
@@ -107,6 +120,7 @@
 ## Monitoring
 
 ### Check Supabase Dashboard
+
 1. Go to Supabase Storage dashboard
 2. Verify files are being uploaded to correct buckets:
    - `images/site-images/` for hero/about images
@@ -114,11 +128,13 @@
 3. Check file sizes and URLs
 
 ### Check Database
+
 1. Verify `site_images` table updates correctly
 2. Verify `galleries` table gets new entries
 3. Check `image_url` and `image_path` fields are populated
 
 ### Browser Developer Tools
+
 1. Network tab: No failed requests to `/api/admin/images` (POST)
 2. Console: No JavaScript errors
 3. Application tab: Check localStorage for admin auth
@@ -126,6 +142,7 @@
 ## Rollback Plan
 
 If issues occur, revert to API route uploads by:
+
 1. Restore original `ImageManager.tsx` and `GalleryManager.tsx`
 2. Remove `uploadUtils.ts`
 3. Keep API routes as backup
@@ -135,6 +152,7 @@ If issues occur, revert to API route uploads by:
 
 ✅ **Primary Goal**: Upload gambar 6MB+ berhasil tanpa error 413
 ✅ **Secondary Goals**:
+
 - Better user experience with direct uploads
 - Proper error handling and validation
 - Automatic cleanup of old files

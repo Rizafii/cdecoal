@@ -92,7 +92,7 @@ export default function ImageManager({
     try {
       // Upload directly to Supabase storage
       const result = await uploadSiteImage(selectedFile, type);
-      
+
       const timestamp = new Date().getTime();
       setCurrentImage(`${result.imageUrl}?v=${timestamp}`);
       setSelectedFile(null);
@@ -120,7 +120,8 @@ export default function ImageManager({
       console.error("Error uploading image:", error);
       Swal.fire({
         title: "Error",
-        text: error instanceof Error ? error.message : "Gagal mengupload gambar",
+        text:
+          error instanceof Error ? error.message : "Gagal mengupload gambar",
         icon: "error",
       });
     } finally {

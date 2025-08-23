@@ -80,7 +80,10 @@ export default function GalleryManager() {
 
     try {
       // Upload image directly to Supabase and save to database
-      const newGallery = await uploadGalleryImage(formData.image, formData.title);
+      const newGallery = await uploadGalleryImage(
+        formData.image,
+        formData.title
+      );
 
       await Swal.fire({
         title: "Berhasil!",
@@ -99,7 +102,8 @@ export default function GalleryManager() {
       console.error("Error adding gallery:", error);
       Swal.fire({
         title: "Error!",
-        text: error instanceof Error ? error.message : "Gagal menambahkan gallery",
+        text:
+          error instanceof Error ? error.message : "Gagal menambahkan gallery",
         icon: "error",
         confirmButtonColor: "#dc2626",
       });
@@ -126,8 +130,8 @@ export default function GalleryManager() {
 
     try {
       // Find the gallery to get its image_path
-      const galleryToDelete = galleries.find(g => g.id === id);
-      
+      const galleryToDelete = galleries.find((g) => g.id === id);
+
       // Delete from database first
       const response = await fetch(`/api/admin/galleries?id=${id}`, {
         method: "DELETE",
@@ -165,7 +169,8 @@ export default function GalleryManager() {
       console.error("Error deleting gallery:", error);
       Swal.fire({
         title: "Error!",
-        text: error instanceof Error ? error.message : "Gagal menghapus gallery",
+        text:
+          error instanceof Error ? error.message : "Gagal menghapus gallery",
         icon: "error",
         confirmButtonColor: "#dc2626",
       });

@@ -10,9 +10,10 @@ export interface UploadResult {
  * For now, this is a simple check but can be expanded with proper authentication
  */
 function checkAdminAuth(): boolean {
-  const adminPassword = localStorage.getItem("adminPassword") || 
-                       process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 
-                       "admin123";
+  const adminPassword =
+    localStorage.getItem("adminPassword") ||
+    process.env.NEXT_PUBLIC_ADMIN_PASSWORD ||
+    "admin123";
   return Boolean(adminPassword);
 }
 
@@ -41,7 +42,9 @@ export async function uploadFileToSupabase(
 
     // Generate filename if not provided
     const fileExt = file.name.split(".").pop() || "jpg";
-    const finalFileName = fileName || `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+    const finalFileName =
+      fileName ||
+      `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
     const filePath = `${folder}/${finalFileName}`;
 
     // Upload to Supabase Storage using regular client (not admin client)
@@ -81,9 +84,7 @@ export async function deleteFileFromSupabase(imagePath: string): Promise<void> {
       throw new Error("Unauthorized access");
     }
 
-    const { error } = await supabase.storage
-      .from("images")
-      .remove([imagePath]);
+    const { error } = await supabase.storage.from("images").remove([imagePath]);
 
     if (error) {
       console.error("Delete error:", error);
@@ -109,7 +110,9 @@ export async function uploadSiteImage(
     // Validasi file
     const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
     if (!allowedTypes.includes(file.type)) {
-      throw new Error("Tipe file tidak valid. Hanya JPEG, JPG, dan PNG yang diizinkan");
+      throw new Error(
+        "Tipe file tidak valid. Hanya JPEG, JPG, dan PNG yang diizinkan"
+      );
     }
 
     // Batasi ukuran file (10MB)
@@ -128,9 +131,13 @@ export async function uploadSiteImage(
     // Generate unique filename
     const fileExt = file.name.split(".").pop() || "jpg";
     const fileName = `${type}-${Date.now()}.${fileExt}`;
-    
+
     // Upload new image
-    const uploadResult = await uploadFileToSupabase(file, "site-images", fileName);
+    const uploadResult = await uploadFileToSupabase(
+      file,
+      "site-images",
+      fileName
+    );
 
     // Update database
     const { error: dbError } = await supabase.from("site_images").upsert(
@@ -177,10 +184,16 @@ export async function uploadSiteImage(
 export async function uploadGalleryImage(
   file: File,
   title: string
-): Promise<{ id: string; title: string; image_url: string; image_path: string }> {
+): Promise<{
+  id: string;
+  title: string;
+  image_url: string;
+  image_path: string;
+}> {
   try {
     // Validasi file
-    if (file.size > 5 * 1024 * 1024) { // 5MB
+    if (file.size > 5 * 1024 * 1024) {
+      // 5MB
       throw new Error("Ukuran file harus kurang dari 5MB");
     }
 
