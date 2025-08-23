@@ -14,10 +14,10 @@ export default function ProgramPelatihan() {
       href: "/pelatihan/induksi",
     },
     {
-      id: "kompetensi",
-      title: "Pelatihan Kompetensi",
+      id: "tkg",
+      title: "TKG",
       description:
-        "Pengembangan kompetensi teknis dan soft skills untuk meningkatkan performa kerja yang optimal.",
+        "Pelatihan Keterampilan dan Kompetensi untuk pengembangan profesional berkelanjutan.",
       icon: Award,
       color: "from-emerald-500 to-emerald-600",
       hoverColor: "hover:from-emerald-600 hover:to-emerald-700",

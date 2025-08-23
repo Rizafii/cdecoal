@@ -22,6 +22,7 @@ import InduksiManager from "@/components/admin/InduksiManager";
 import SimperManager from "@/components/admin/SimperManager";
 import RecruitmentManager from "@/components/admin/RecruitmentManager";
 import ImageManager from "@/components/admin/ImageManager";
+import KompetensiManager from "@/components/admin/KompetensiManager";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("images");
@@ -51,6 +52,12 @@ export default function AdminDashboard() {
       label: "Data Induksi",
       icon: GraduationCap,
       description: "Kelola data induksi",
+    },
+    {
+      id: "kompetensi",
+      label: "Soal TKG",
+      icon: BookOpen,
+      description: "Kelola soal kompetensi",
     },
     {
       id: "recruitment",
@@ -132,6 +139,8 @@ export default function AdminDashboard() {
         return <TrainingManager />;
       case "induksi":
         return <InduksiManager />;
+      case "kompetensi":
+        return <KompetensiManager />;
       case "recruitment":
         return <RecruitmentManager />;
       case "simper":

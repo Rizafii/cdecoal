@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronDown, ExternalLink, FileText } from "lucide-react";
-import { kompetensiData, KategoriKompetensi } from "./data";
+import { fetchKompetensiData, KategoriKompetensi } from "./data";
 import Navbar from "@/app/components/Navbar";
 
 const KategoriCard = ({ kategori }: { kategori: KategoriKompetensi }) => {
@@ -81,6 +81,41 @@ const KategoriCard = ({ kategori }: { kategori: KategoriKompetensi }) => {
 };
 
 export default function KompetensiPage() {
+  const [kompetensiList, setKompetensiList] = useState<KategoriKompetensi[]>(
+    []
+  );
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setIsLoading(true);
+        const data = await fetchKompetensiData();
+        setKompetensiList(data);
+      } catch (error) {
+        console.error("Error loading kompetensi data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <>
+        <Navbar />
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">Memuat data kompetensi...</p>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <Navbar />
@@ -90,10 +125,10 @@ export default function KompetensiPage() {
           <div className="max-w-5xl mx-auto px-6 py-12">
             <div className="text-center">
               <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                Program Kompetensi
+                Program TKG
               </h1>
               <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                Pilih kategori latihan soal untuk mengasah kompetensi Anda
+                Pilih kategori soal untuk mengasah kompetensi Anda
               </p>
             </div>
           </div>
@@ -102,17 +137,15 @@ export default function KompetensiPage() {
         {/* Main Content */}
         <div className="max-w-5xl mx-auto px-6 py-12">
           <div className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              Kategori Latihan Soal
-            </h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">Soal</h2>
             <p className="text-gray-600">
-              Tersedia {kompetensiData.length} kategori latihan soal
+              Tersedia {kompetensiList.length} kategori soal
             </p>
           </div>
 
           {/* Kategori Cards */}
           <div className="space-y-4">
-            {kompetensiData.map((kategori) => (
+            {kompetensiList.map((kategori) => (
               <KategoriCard key={kategori.id} kategori={kategori} />
             ))}
           </div>
@@ -136,8 +169,8 @@ export default function KompetensiPage() {
               <div>
                 <h3 className="font-medium text-green-900 mb-1">Informasi</h3>
                 <p className="text-green-700 text-sm">
-                  Latihan soal ini bertujuan untuk meningkatkan kompetensi Anda.
-                  Untuk pertanyaan lebih lanjut, hubungi tim HCGS.
+                  Soal ini bertujuan untuk meningkatkan kompetensi Anda. Untuk
+                  pertanyaan lebih lanjut, hubungi tim HCGS.
                 </p>
               </div>
             </div>
