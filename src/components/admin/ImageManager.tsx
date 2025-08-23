@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Upload, Save, Image as ImageIcon, Trash2 } from "lucide-react";
 import Swal from "sweetalert2";
+import { uploadSiteImage } from "@/lib/uploadUtils";
 
 interface ImageManagerProps {
   type: "hero" | "about";
@@ -89,51 +90,37 @@ export default function ImageManager({
     setIsLoading(true);
 
     try {
-      const formData = new FormData();
-      formData.append("file", selectedFile);
-      formData.append("type", type);
+      // Upload directly to Supabase storage
+      const result = await uploadSiteImage(selectedFile, type);
+      
+      const timestamp = new Date().getTime();
+      setCurrentImage(`${result.imageUrl}?v=${timestamp}`);
+      setSelectedFile(null);
+      setPreviewUrl("");
 
-      const response = await fetch("/api/admin/images", {
-        method: "POST",
-        headers: {
-          "x-admin-password": getAdminPassword(),
-        },
-        body: formData,
+      Swal.fire({
+        title: "Berhasil!",
+        text: `Gambar ${
+          type === "hero" ? "Hero" : "About"
+        } berhasil diupload. Perubahan akan terlihat setelah refresh halaman.`,
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonText: "Refresh Halaman",
+        cancelButtonText: "OK",
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        const timestamp = new Date().getTime();
-        setCurrentImage(`${data.imageUrl}?v=${timestamp}`);
-        setSelectedFile(null);
-        setPreviewUrl("");
-
-        Swal.fire({
-          title: "Berhasil!",
-          text: `Gambar ${
-            type === "hero" ? "Hero" : "About"
-          } berhasil diupload. Perubahan akan terlihat setelah refresh halaman.`,
-          icon: "success",
-          showCancelButton: true,
-          confirmButtonText: "Refresh Halaman",
-          cancelButtonText: "OK",
-          reverseButtons: true,
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.reload();
-          }
-        });
-
-        // Refresh current image preview
-        fetchCurrentImage();
-      } else {
-        throw new Error("Upload failed");
-      }
+      // Refresh current image preview
+      fetchCurrentImage();
     } catch (error) {
       console.error("Error uploading image:", error);
       Swal.fire({
         title: "Error",
-        text: "Gagal mengupload gambar",
+        text: error instanceof Error ? error.message : "Gagal mengupload gambar",
         icon: "error",
       });
     } finally {

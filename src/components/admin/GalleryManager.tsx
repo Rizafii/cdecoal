@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Plus, Trash2, Upload, Image as ImageIcon, X, Eye } from "lucide-react";
 import Swal from "sweetalert2";
+import { uploadGalleryImage, deleteFileFromSupabase } from "@/lib/uploadUtils";
 
 // Interface untuk Gallery
 interface Gallery {
@@ -62,29 +63,6 @@ export default function GalleryManager() {
     }
   };
 
-  // Upload gambar ke API
-  const uploadImage = async (
-    file: File
-  ): Promise<{ image_url: string; image_path: string }> => {
-    const formData = new FormData();
-    formData.append("file", file);
-
-    const response = await fetch("/api/admin/upload", {
-      method: "POST",
-      headers: {
-        "x-admin-password": getAdminPassword(),
-      },
-      body: formData,
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || "Upload failed");
-    }
-
-    return await response.json();
-  };
-
   // Tambah gallery baru
   const handleAddGallery = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,27 +79,8 @@ export default function GalleryManager() {
     setIsUploading(true);
 
     try {
-      // Upload gambar
-      const { image_url, image_path } = await uploadImage(formData.image);
-
-      // Simpan ke database melalui API
-      const response = await fetch("/api/admin/galleries", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-admin-password": getAdminPassword(),
-        },
-        body: JSON.stringify({
-          title: formData.title,
-          image_url,
-          image_path,
-        }),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || "Failed to add gallery");
-      }
+      // Upload image directly to Supabase and save to database
+      const newGallery = await uploadGalleryImage(formData.image, formData.title);
 
       await Swal.fire({
         title: "Berhasil!",
@@ -140,7 +99,7 @@ export default function GalleryManager() {
       console.error("Error adding gallery:", error);
       Swal.fire({
         title: "Error!",
-        text: `Gagal menambahkan gallery: ${error}`,
+        text: error instanceof Error ? error.message : "Gagal menambahkan gallery",
         icon: "error",
         confirmButtonColor: "#dc2626",
       });
@@ -166,6 +125,10 @@ export default function GalleryManager() {
     if (!result.isConfirmed) return;
 
     try {
+      // Find the gallery to get its image_path
+      const galleryToDelete = galleries.find(g => g.id === id);
+      
+      // Delete from database first
       const response = await fetch(`/api/admin/galleries?id=${id}`, {
         method: "DELETE",
         headers: {
@@ -176,6 +139,16 @@ export default function GalleryManager() {
       if (!response.ok) {
         const error = await response.json();
         throw new Error(error.error || "Failed to delete gallery");
+      }
+
+      // Delete file from storage if image_path exists
+      if (galleryToDelete?.image_path) {
+        try {
+          await deleteFileFromSupabase(galleryToDelete.image_path);
+        } catch (storageError) {
+          console.warn("Failed to delete file from storage:", storageError);
+          // Don't throw error here as database deletion was successful
+        }
       }
 
       await Swal.fire({
@@ -192,7 +165,7 @@ export default function GalleryManager() {
       console.error("Error deleting gallery:", error);
       Swal.fire({
         title: "Error!",
-        text: `Gagal menghapus gallery: ${error}`,
+        text: error instanceof Error ? error.message : "Gagal menghapus gallery",
         icon: "error",
         confirmButtonColor: "#dc2626",
       });
