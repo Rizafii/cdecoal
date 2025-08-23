@@ -9,7 +9,7 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Admin client dengan service role (untuk bypass RLS)
 const supabaseServiceKey =
-  process.env.SUPABASE_SERVICE_ROLE_KEY || "your-service-role-key";
+  process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY || "your-service-role-key";
 export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
   auth: {
     autoRefreshToken: false,
