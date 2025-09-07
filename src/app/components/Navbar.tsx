@@ -43,12 +43,12 @@ export default function Navbar() {
             >
               Tentang Kami
             </a>
-            <a
+            {/* <a
               href="/#vision"
               className="relative text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Visi & Misi
-            </a>
+            </a> */}
             <a
               href="/#training"
               className="relative text-gray-600 hover:text-primary transition-colors duration-200 font-medium text-sm uppercase tracking-wider py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
@@ -197,13 +197,13 @@ export default function Navbar() {
             >
               Tentang Kami
             </a>
-            <a
+            {/* <a
               href="/#vision"
               onClick={closeMobileMenu}
               className="relative block text-gray-800 hover:text-primary transition-colors duration-150 text-lg font-medium py-2 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
             >
               Visi & Misi
-            </a>
+            </a> */}
             <a
               href="/#training"
               onClick={closeMobileMenu}
