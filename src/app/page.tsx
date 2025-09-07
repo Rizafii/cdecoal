@@ -29,7 +29,7 @@ export default function Home() {
       <Hero />
       <ProgramPelatihan />
       <About />
-      <VisionMission />
+      {/* <VisionMission /> */}
       <GallerySection />
       <Contact />
       <Footer />
